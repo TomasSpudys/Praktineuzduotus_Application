@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.CalendarMonth
 import androidx.compose.material.icons.rounded.DeleteSweep
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -38,7 +39,7 @@ import androidx.compose.material.icons.rounded.ShoppingCart
 
 
 val GAVIMO_LANGAS = "Gavimas"
-val SIUNTIMO_LANGAS = "Siuntimas"
+val SIUNTIMO_LANGAS = "Siunta"
 
 @Composable
 fun LoggedInView() {
@@ -55,7 +56,7 @@ fun LoggedInView() {
         if (activeWindow == GAVIMO_LANGAS) {
             GavimoVaizdas()
         } else if (activeWindow == SIUNTIMO_LANGAS) {
-            SiuntimoVaizdas()
+            SiuntaVaizdas()
         }
 
         // * Paspaudus skirtinga buttona pasikeicia activeWindow t.y. pasikeicia aktyvus langas
@@ -66,11 +67,11 @@ fun LoggedInView() {
                         painterResource(androidx.core.R.drawable.ic_call_answer),
                         contentDescription = "IDK"
                     )
-                    Text(text = "GAVIMAS", color = Color.Red)
+                    Text(text = "GAVIMAS", color = Color.White)
                 }
             }
             Button(onClick = { activeWindow = SIUNTIMO_LANGAS }) {
-                Text(text = "Siuntimas")
+                Text(text = "Siunta")
             }
         }
     }
@@ -84,7 +85,7 @@ fun GavimoVaizdas() {
 
 @Composable
 fun GavimoListas() {
-    val simple_list = listOf<String>("Bmw", "Audi", "Toyota", "Lioxa", "VW", "Kia", "Audivel")
+    val simple_list = listOf<String>("Bmw_M5", "Audi_A6", "Toyota_Camry", "Lexus_Lx", "VW_Golf7", "Kia_Sportage", "Tesla_S")
     Column(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.8F)
         .verticalScroll(rememberScrollState())
         ,verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -95,10 +96,10 @@ fun GavimoListas() {
 }
 
 @Composable
-fun GavimoListItem(item: String) {
+fun GavimoListItem(item: CarPark) {
     Row(
         modifier = Modifier
-            .border(5.dp, MaterialTheme.colorScheme.onTertiary)
+            .border(5.dp, MaterialTheme.colorScheme.background)
             .padding(20.dp)
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly
@@ -109,7 +110,7 @@ fun GavimoListItem(item: String) {
         Button(onClick = { }) {
             Text(text = "Gavimo btn")
             Icon (
-                Icons.Rounded.DeleteSweep,
+                Icons.Rounded.CalendarMonth,
                 modifier = Modifier.size(16.dp),
                 contentDescription = "icon",
                 tint= Color.Red)
@@ -119,7 +120,7 @@ fun GavimoListItem(item: String) {
 
 
 @Composable
-fun SiuntimoVaizdas() {
+fun SiuntaVaizdas() {
     Column(
         modifier = Modifier
             .size(700.dp)

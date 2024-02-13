@@ -16,7 +16,7 @@ import com.example.demo_application_tomas.ui.theme.views.ScanView
 
 class MainActivity : ComponentActivity() {
 
-    val DEFAULT_PASSWORD = "TOMAS"
+    val DEFAULT_PASSWORD = "Open"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
