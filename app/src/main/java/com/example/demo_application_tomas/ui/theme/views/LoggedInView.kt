@@ -14,9 +14,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.CalendarMonth
-import androidx.compose.material.icons.rounded.DeleteSweep
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -85,28 +83,35 @@ fun GavimoVaizdas() {
 
 @Composable
 fun GavimoListas() {
-    val simple_list = listOf<String>("Bmw_M5", "Audi_A6", "Toyota_Camry", "Lexus_Lx", "VW_Golf7", "Kia_Sportage", "Tesla_S")
+    var listPart = arrayListOf<CarPart>()
+    val item1= CarPart(1,"variklis","bmw_m5",R.drawable.bmw_m5)
+    listPart.add(item1) //idedu lista CarPark objektui//
+    val item2= CarPart(2,"variklis","audi_a6", R.drawable.audi_a6)
+    listPart.add(item2)
+    val item3= CarPart(3,"variklis","toyota_camry", R.drawable.toyota_camry)
+    listPart.add(item3)
     Column(modifier = Modifier.fillMaxWidth().fillMaxHeight(0.8F)
         .verticalScroll(rememberScrollState())
         ,verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        simple_list.forEach { item ->
+        listPart.forEach { item ->
             GavimoListItem(item)
         }
     }
 }
 
 @Composable
-fun GavimoListItem(item: CarPark) {
+fun GavimoListItem(carPart:CarPart) {
     Row(
-        modifier = Modifier
-            .border(5.dp, MaterialTheme.colorScheme.background)
+        modifier = Modifier.padding(start = 20.dp)
+            .border(5.dp, Color.Blue)
             .padding(20.dp)
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceEvenly
 
     ) {
-        Image(painterResource(R.drawable.bmw_f10), contentDescription = "IDK",modifier = Modifier.size(100.dp))
-        Text(text = item, color = Color.Red)
+        Image(painterResource(carPart.image),contentDescription = "IDK",modifier = Modifier.size(100.dp))
+        Text(text =carPart.id.toString() , color = Color.Black)
+        Text(text=carPart.carMaker)
         Button(onClick = { }) {
             Text(text = "Gavimo btn")
             Icon (
@@ -124,15 +129,17 @@ fun SiuntaVaizdas() {
     Column(
         modifier = Modifier
             .size(700.dp)
-            .border(2.dp, MaterialTheme.colorScheme.background),
+            .border(2.dp, MaterialTheme.colorScheme.onBackground),
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        Icon (
+        Icon(
             Icons.Rounded.ShoppingCart,
             modifier = Modifier.size(64.dp),
             contentDescription = "icon",
-            tint= Color.Red
+            tint = Color.Blue
         )
+
+        }
     }
-}
+
 
